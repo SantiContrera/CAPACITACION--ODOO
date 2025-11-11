@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+               <!--accion para modelo ejemplares-->
+        <record id="action_library_ejemplar" model="ir.actions.act_window">
+            <field name="name">library ejemplar action</field>
+            <field name="res_model">library.ejemplar</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <!-- menu para otro modelo
+        <menuitem id="menu_library_ejemplar" name="Ejemplares"
+                parent="menu_library_book_model_root" action="action_library_ejemplar"/>-->
+
+        <!--vista form de ejemplar para wizard
+        <record id="view_library_ejemplar_form" model="ir.ui.view">
+            <field name="name">library.ejemplar.form</field>
+            <field name="model">library.ejemplar</field>
+            <field name="arch" type="xml">
+                <form string="Ejemplares">
+                    <header>
+                        <button name="%(action_library_wizard_update)d"
+                                string="Actualizar Estado"
+                                type="action"
+                                class="oe_highlight"
+                                context="{'default_ejemplar_id': active_id}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="book_id"/>
+                            <field name="status"/>
+                            <field name="propietario_id"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>-->
+
+        <!--<record id="view_library_book_form_inherit_wizard" model="ir.ui.view">
+            <field name="name">library.book.form.inherit.wizard</field>
+            <field name="model">library.book.model</field>
+            <field name="inherit_id" ref="library_book.view_library_book_view_form"/>  
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="inside">
+                    <header>
+                        <button name="%(action_library_wizard_update)d"
+                                string="Actualizar Estado"
+                                type="action"
+                                class="oe_highlight"/>
+                    </header>
+                </xpath>
+            </field>
+        </record>-->
+
+    </data>
+</odoo>

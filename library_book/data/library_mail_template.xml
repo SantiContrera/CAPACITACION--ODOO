@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="mi_plantilla_de_correo" model="mail.template">
+            <field name="name">Notificacion sobre ejemplar</field>
+            <field name="model_id" ref="library_book.model_library_ejemplar"/>  
+            <field name="subject">ejemplar {{ object.book_id.id }} fue {{ object.status.id }} por {{ object.propietario_id.id }}</field> <!--ver como hacer que tome cada campo book_id , status_id y propietario_id para c/ caso de ejemplar-->
+            <field name="email_from">{{ (object.email or user.email) }}</field> 
+            <field name="partner_to">{{ object.propietario_id.id }}</field> 
+            <field name="body_html" type="html">
+                <div>
+                    <!--<p>Hola ${object.user_id.name}</p>
+                    <p>Este es un correo de ejemplo.</p>-->
+                    <p>cleinte: {object.propietario_id.name},</p>
+
+                    <p> 
+                    <!--para ver si alquilo o compro-->
+                    <p>el ejemplar fue <b>{{ object.book_id.name }}</b> por {{ object.status == 'comprado' and 'comprar' or 'alquilar' }}</p>
+                    </p>
+
+                    <p><strong>id de ejemplar</strong> {object.book_id}</p>
+
+                    <p><strong>Fecha de devolucion</strong> {object.fecha}</p>
+                    <p>fin correo</p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

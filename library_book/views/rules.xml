@@ -1,0 +1,92 @@
+<odoo>
+    <data>
+        <record id="rule_admin" model="ir.rule">
+            <field name="name">ADMIN REGLA</field>      
+            <field name="model_id" ref="model_library_book_model"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="rule_assistant" model="ir.rule">
+            <field name="name">ASSISTANT REGLA</field>      
+            <field name="model_id" ref="model_library_book_model"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_user" model="ir.rule">
+            <field name="name">USER REGLA</field>      
+            <field name="model_id" ref="model_library_book_model"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_ejemplar_admin" model="ir.rule">
+            <field name="name">ADMIN REGLA</field>      
+            <field name="model_id" ref="model_library_ejemplar"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="rule_ejemplar_assistant" model="ir.rule">
+            <field name="name">ASSISTANT REGLA</field>      
+            <field name="model_id" ref="model_library_ejemplar"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_ejemplar_user" model="ir.rule">
+            <field name="name">USER REGLA</field>      
+            <field name="model_id" ref="model_library_ejemplar"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        <record id="rule_wizard_admin" model="ir.rule">
+            <field name="name">ROOT REGLA</field>      
+            <field name="model_id" ref="model_library_wizard_update"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="rule_ejemplar_assistant" model="ir.rule">
+            <field name="name">AST REGLA</field>      
+            <field name="model_id" ref="model_library_wizard_update"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_ejemplar_user" model="ir.rule">
+            <field name="name">USUARIO REGLA</field>      
+            <field name="model_id" ref="model_library_wizard_update"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+    </data>
+</odoo>

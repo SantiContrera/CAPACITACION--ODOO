@@ -1,0 +1,120 @@
+<odoo>
+    <data>
+        <!--accion de ventana del library book-->
+        <record id="action_library_book_model" model="ir.actions.act_window">
+            <field name="name">Libros</field>
+            <field name="res_model">library.book.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--menu del mdelo principal-->
+        <menuitem id="menu_library_book_model_root" name="Booker"/>
+        <menuitem id="menu_library_book_model" name="Seccion principal"
+                  parent="menu_library_book_model_root"
+                  action="action_library_book_model"/>
+        
+        <!--vista de lista del library book-->
+        <record id="view_library_book_view_tree" model="ir.ui.view">
+            <field name="name">library_book_view_tree</field>
+            <field name="model">library.book.model</field>
+            <field name="arch" type="xml">
+                <tree string="library view">
+                    <field name="titulo"/>
+                    <field name="author"/>
+                    <field name="category_id"/>
+                    <field name="partner_id"/>
+                    <field name="price"/>
+                    <field name="currency_id"/>
+                    <field name="date"/>
+                    <field name="total_pages"/>
+                    <field name="act"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--vista formulario de library_book_model-->
+        <record id="view_library_book_view_form" model="ir.ui.view">
+            <field name="name">library_book_form</field>
+            <field name="model">library.book.model</field>
+            <field name="arch" type="xml">
+                <form string="Book Form">
+                    <sheet>
+                        <group>
+                            <field name="titulo"/>
+                            <field name="author"/>
+                            <field name="date"/>
+                            <field name="act"/>
+                        </group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="category_id"/> 
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group string="Ejemplares">
+                            <field name="copies_id" mode="tree,form">
+                                <tree>
+                                    <field name="book_id"/>
+                                    <field name="status"/>
+                                    <field name="propietario_id" attrs="{'invisible':[('status','in',['stant'])]}"/>
+                                    <field name="fecha" attrs="{'invisible':[('status','!=','alquilado')]}"/>    
+
+                                </tree>
+                                <form>
+                                    <group>                                  
+                                        <header>
+                                            <button name="%(action_library_wizard_update)d"
+                                                    string="Actualizar Estado"
+                                                    type="action"
+                                                    class="oe_highlight"/>
+                                        </header>
+                                        <field name="status"/>
+                                        <field name="propietario_id" attrs="{'invisible':[('status','in',['stant'])]}"/>
+                                        <field name="fecha" attrs="{'invisible':[('status','!=','alquilado')]}"/>    
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                        <group string="Información adicional">
+                            <field name="summary"/>
+                            <field name="total_pages"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!--vista de busqueda-->
+        <record id="view_library_book_search" model="ir.ui.view">
+            <field name="name">library.book.search</field>
+            <field name="model">library.book.model</field>
+            <field name="arch" type="xml">
+                <search string="library search">
+                    <field name="author" string="Autor" />
+                    <field name="total_pages" string="Total de paginas"/>
+                    <field name="date" string="Fecha de lanzamiento"/>
+                        <filter string="Autor sigue escribiendo" name="author_writing" domain="[('author','!=',False)]"/>
+                    <group expand="1" string="Agrupar por">
+                        <filter string="Autor" name="filter_author" context="{'group_by':'author'}"/>
+                        <filter string="Categoría" name="filter_category" context="{'group_by':'category_id'}"/>                        
+                        <filter string="Total de paginas" name="filter_pages" context="{'group_by':'total_pages'}"/>
+                        <filter string="Fecha" name="filter_date" context="{'group_by':'date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+            <!--accion de ventana para modelo categories-->
+        <record id="action_library_book_categories" model="ir.actions.act_window">
+            <field name="name">Tipos de categorias de libros</field>
+            <field name="res_model">library.book.categories</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--menu para otro modelo categories-->
+        <menuitem id="menu_library_book_categories_model" name="Categorias"
+                parent="menu_library_book_model_root" action="action_library_book_categories"/>
+    </data>
+</odoo>

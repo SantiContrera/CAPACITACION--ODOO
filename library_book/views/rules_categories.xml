@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <!--modelo categories-->    
+        <record id="rule_categories_admin" model="ir.rule">
+            <field name="name">ADMIN REGLA</field>      
+            <field name="model_id" ref="model_library_book_categories"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+        <record id="rule_categories_assinstant" model="ir.rule">
+            <field name="name">ASSISTANT REGLA</field>      
+            <field name="model_id" ref="model_library_book_categories"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_categories_user" model="ir.rule">
+            <field name="name">USER REGLA</field>      
+            <field name="model_id" ref="model_library_book_categories"/>
+            <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+    </data>
+</odoo>

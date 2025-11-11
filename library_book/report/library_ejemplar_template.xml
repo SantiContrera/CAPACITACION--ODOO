@@ -1,0 +1,8 @@
+<odoo>
+    <template id=library_ejemplar_template>
+        <t t-name='library.book_library_ejemplar_template'>
+        <div>
+            <p>
+        </div>
+    </template>
+</odoo>

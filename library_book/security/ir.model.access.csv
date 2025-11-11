@@ -1,0 +1,16 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_library_book_user,Library Book: User,model_library_book_model,base.group_user,1,0,0,0
+access_library_book_assistant,Library Book: Assistant,model_library_book_model,base.group_user,1,1,0,0
+access_library_book_admin,Library Book: Admin,model_library_book_model,base.group_system,1,1,1,1
+
+access_library_book_categories_user,Library book category: User,model_library_book_categories,base.group_user,1,1,1,0
+access_library_book_categories_assistant,Library book category: Assistant,model_library_book_categories,base.group_user,1,1,1,0
+access_library_book_categories_admin,Library book category: Admin,model_library_book_categories,base.group_system,1,1,1,1
+
+access_library_ejemplar_user,Library ejemplar: User,model_library_ejemplar,base.group_user,1,1,1,0
+access_library_ejemplar_assistant,Library ejemplar: Assistant,model_library_ejemplar,base.group_user,1,1,1,0
+access_library_ejemplar_admin,Library ejemplar: Admin,model_library_ejemplar,base.group_system,1,1,1,1
+
+access_library_wizard_update_user,Library wizard: User,model_library_wizard_update,base.group_user,1,1,1,0
+access_library_wizard_update_assistant,Library wizard: Assistant,model_library_wizard_update,base.group_user,1,1,1,0
+access_library_wizard_update_admin,Library wizard: Admin,model_library_wizard_update,base.group_system,1,1,1,1
