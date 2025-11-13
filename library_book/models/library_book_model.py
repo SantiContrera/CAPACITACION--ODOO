@@ -10,7 +10,7 @@ class LibrosModel(models.Model):
     prop_id = fields.One2many('library.ejemplar', 'propietario_id', string='Actual propietario')
     estado_id = fields.Many2one('library.ejemplar', string='Estado')
 
-    titulo = fields.Char(string="Titulo", required=True)
+    titulo = fields.Char(string='Titulo', required=True)
     price = fields.Monetary(string='Precio', currency_field='currency_id')
     currency_id = fields.Many2one('res.currency', string='Moneda')
     

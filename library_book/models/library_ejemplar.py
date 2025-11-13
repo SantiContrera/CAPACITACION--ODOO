@@ -4,7 +4,7 @@ class LibraryEjemplar(models.Model):
     _name = 'library.ejemplar'
     _description = 'ejemplares'
 
-   #titulo_id = fields.Many2one("library_book.model")
+    titulo_id = fields.Many2one('library_book.model', string='Titulo')
     book_id = fields.Many2one('library.book.model', string='Ejemplareses')
     status = fields.Selection([
         ("stant",'Disponible'),
@@ -15,6 +15,7 @@ class LibraryEjemplar(models.Model):
     fecha = fields.Date('Fecha', default=fields.Date.today)
     email = fields.Char(string="Correo")
     description = fields.Text(string = 'Descripcion')
+    user_id = fields.One2many('library.book.model', 'partner_id', string='Responsable')
 
     def actio(self):
         if self.status == 'stant':

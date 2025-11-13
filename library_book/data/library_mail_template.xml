@@ -3,24 +3,25 @@
         <record id="mi_plantilla_de_correo" model="mail.template">
             <field name="name">Notificacion sobre ejemplar</field>
             <field name="model_id" ref="library_book.model_library_ejemplar"/>  
-            <field name="subject">ejemplar {{ object.book_id.id }} fue {{ object.status.id }} por {{ object.propietario_id.id }}</field> <!--ver como hacer que tome cada campo book_id , status_id y propietario_id para c/ caso de ejemplar-->
-            <field name="email_from">{{ (object.email or user.email) }}</field> 
+            <field name="subject">ejemplar {{ object.book_id.id }}: {{ object.status == 'comprado' and 'comprar' or 'alquilar' }}</field>
+            <field name="email_from">{{ (object.user_id or user.user_id) }}</field> 
             <field name="partner_to">{{ object.propietario_id.id }}</field> 
             <field name="body_html" type="html">
-                <div>
+                <div style="margin: 0px; padding: 0px;">
                     <!--<p>Hola ${object.user_id.name}</p>
                     <p>Este es un correo de ejemplo.</p>-->
-                    <p>cleinte: {object.propietario_id.name},</p>
-
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                    <b> Cliente: ${object.propietario_id.name}</b>
+                    </p>
                     <p> 
                     <!--para ver si alquilo o compro-->
-                    <p>el ejemplar fue <b>{{ object.book_id.name }}</b> por {{ object.status == 'comprado' and 'comprar' or 'alquilar' }}</p>
+                    <p style="margin: 0px; padding: 0px; font-size: 10px;">El ejemplar fue <b>${{ object.book_id.name }}</b> por ${{ object.status == 'comprado' and 'comprar' or 'alquilar' }}</p>
                     </p>
 
-                    <p><strong>id de ejemplar</strong> {object.book_id}</p>
+                    <p style="margin: 0px; padding: 0px; font-size: 10px;"><strong>Codigo del ejemplar:</strong> ${object.book_id}</p>
 
-                    <p><strong>Fecha de devolucion</strong> {object.fecha}</p>
-                    <p>fin correo</p>
+                    <p style="margin: 0px; padding: 0px; font-size: 10px;"><strong>Fecha de devolucion: </strong> ${object.fecha}</p>
+                    <p>Gracias por su ${object.status}</p>
                 </div>
             </field>
         </record>
