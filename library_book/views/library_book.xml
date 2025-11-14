@@ -19,7 +19,7 @@
             <field name="model">library.book.model</field>
             <field name="arch" type="xml">
                 <tree string="library view">
-                    <field name="titulo"/>
+                    <field name="tittle"/>
                     <field name="author"/>
                     <field name="category_id"/>
                     <field name="partner_id"/>
@@ -40,7 +40,7 @@
                 <form string="Book Form">
                     <sheet>
                         <group>
-                            <field name="titulo"/>
+                            <field name="tittle"/>
                             <field name="author"/>
                             <field name="date"/>
                             <field name="act"/>
@@ -56,6 +56,7 @@
                         <group string="Ejemplares">
                             <field name="copies_id" mode="tree,form">
                                 <tree>
+                                    <field name="ejemplar_id"/>
                                     <field name="book_id"/>
                                     <field name="status"/>
                                     <field name="propietario_id" attrs="{'invisible':[('status','in',['stant'])]}"/>
