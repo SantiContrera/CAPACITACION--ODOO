@@ -25,7 +25,7 @@ class EjemplarControlador(http.Controller):
         aux = request.env['library.ejemplar'].browse(ejemplar_id)
 
         #si no existe el buscadp
-        if ejemplar.()
+        if aux.()
             return {'error: ID no encontrado'}
         #Nombre del ejemplar.
         #Quien lo alquilo/compro.
