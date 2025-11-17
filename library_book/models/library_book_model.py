@@ -6,7 +6,7 @@ class LibrosModel(models.Model):
 
     partner_id = fields.Many2one('res.partner', string='Usuario responsable', ondelete='set null')
     category_id = fields.Many2one('library.book.categories', string='Categoria de libro')
-    copies_id = fields.One2many('library.ejemplar', 'book_id', string='Ejemplares en stock')
+    copies_id = fields.One2many('library.ejemplar', 'titulo_id', string='titulo')
     prop_id = fields.One2many('library.ejemplar', 'propietario_id', string='Actual propietario')
     estado_id = fields.Many2one('library.ejemplar', string='Estado')
 

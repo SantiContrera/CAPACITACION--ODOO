@@ -57,11 +57,10 @@
                             <field name="copies_id" mode="tree,form">
                                 <tree>
                                     <field name="ejemplar_id"/>
-                                    <field name="book_id"/>
+                                    <!--field name="book_id"/-->
                                     <field name="status"/>
                                     <field name="propietario_id" attrs="{'invisible':[('status','in',['stant'])]}"/>
                                     <field name="fecha" attrs="{'invisible':[('status','!=','alquilado')]}"/>    
-
                                 </tree>
                                 <form>
                                     <group>                                  
@@ -75,6 +74,12 @@
                                         <field name="propietario_id" attrs="{'invisible':[('status','in',['stant'])]}"/>
                                         <field name="fecha" attrs="{'invisible':[('status','!=','alquilado')]}"/>    
                                     </group>
+                                    <!--group
+                                        <field name="ejemplar_id" readonly="1"/> <!- Mostrar "Título, N" ->
+                                        <field name="status"/>
+                                        <field name="propietario_id" attrs="{'invisible':[('status','in',['stant'])]}"/>
+                                        <field name="fecha" attrs="{'invisible':[('status','!=','alquilado')]}"/>
+                                    /group -->
                                 </form>
                             </field>
                         </group>

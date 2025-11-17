@@ -5,7 +5,8 @@ class LibraryEjemplar(models.Model):
     _description = 'ejemplares'
 
     titulo_id = fields.Many2one('library.book.model', string='Titulo')
-    book_id = fields.Many2one('library.book.model', string='ID DE EJEMPLAR')
+    titulo_name = fields.Char(related='titulo_id.tittle', store=True)
+    #book_id = fields.Many2one('library.book.model', string='titulo')
     status = fields.Selection([
         ("stant",'Disponible'),
         ("alquilado",'Alquilado'),
@@ -33,9 +34,14 @@ class LibraryEjemplar(models.Model):
     def ejemplar_calc(self):
         for record in self:
             if record.titulo_id:
-                ejemplares = self.search([('titulo_id', '=', record.titulo_id.id)], order='id')
-                cantidad = ejemplares.ids.index(record.id) + 1 if record.id in ejemplares.ids else 1
-                record.ejemplar_id = f"{record.titulo_id.tittle or 'Libro'}, {numero}"
-            else:
-                record.ejemplar_id = f"Ejemplar {record.id}"
+                ejemplares = self.search([('titulo_id', '=', record.titulo_id.id)], order='create_date')
+                
+                count = 0
+                for e in ejemplares:
+                    if e.id < record.id or not record.id:
+                        count += 1
+                #record.cant= count
 
+                record.ejemplar_id = f"{record.titulo_id.tittle}, {count + 1}"
+            else:
+                record.ejemplar_id = "Ejemplar sin título"

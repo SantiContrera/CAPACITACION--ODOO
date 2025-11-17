@@ -1,9 +1,9 @@
 <odoo>
     <data>
-        <record id="mi_plantilla_de_correo" model="mail.template">
+        <record id="plantilla_ejemplar" model="mail.template">
             <field name="name">Notificacion sobre ejemplar</field>
             <field name="model_id" ref="library_book.model_library_ejemplar"/>  
-            <field name="subject">ejemplar {{ object.book_id }}: {{ object.status == 'comprado' and 'comprar' or 'alquilar' }}</field>
+            <field name="subject">ejemplar {{ object.titulo_id }}: {{ object.status == 'comprado' and 'Compra' or 'Alquiler' }}</field>
             <field name="email_from">{{ (object.user_id or user.user_id) }}</field> 
             <field name="partner_to">{{ object.propietario_id.id }}</field> 
             <field name="body_html" type="html">
@@ -15,13 +15,15 @@
                     </p>
                     <p> 
                     <!--para ver si alquilo o compro-->
-                    <p style="margin: 0px; padding: 0px; font-size: 10px;">El ejemplar fue <b>${{ object.book_id.name }}</b> por ${{ object.status == 'comprado' and 'comprar' or 'alquilar' }}</p>
+                    <p style="margin: 0px; padding: 0px; font-size: 10px;">El ejemplar fue <b> ${{ object.status == 'comprado' and 'comprar' or 'alquilar' }}</b> por  ${{ object.book_id.name }}</p>
                     </p>
 
-                    <p style="margin: 0px; padding: 0px; font-size: 10px;"><strong>Codigo del ejemplar:</strong> ${object.book_id}</p>
-
+                    <p style="margin: 0px; padding: 0px; font-size: 10px;"><strong>Codigo del ejemplar:</strong> ${object.ejemplar_id}</p>
+                    <!--fecha de devolucion en caso de que se alquile-->
+                    <t t-if="object.status == alquilado">
                     <p style="margin: 0px; padding: 0px; font-size: 10px;"><strong>Fecha de devolucion: </strong> ${object.fecha}</p>
-                    <p>Gracias por su ${object.status}</p>
+                    </t>
+                    <p>Gracias por su ${object.status == 'comprado' and 'Compra' or 'Alquiler'}</p>
                 </div>
             </field>
         </record>
