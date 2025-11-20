@@ -11,7 +11,7 @@ class LibrosModel(models.Model):
     estado_id = fields.Many2one('library.ejemplar', string='Estado')
 
     tittle = fields.Char(string='Titulo', required=True)
-    price = fields.Monetary(string='Precio', currency_field='currency_id')
+    price = fields.Monetary(string='Precio', currency_field='currency_id', required=True)
     currency_id = fields.Many2one('res.currency', string='Moneda')
 
     author = fields.Char(string='Autor', required=True)

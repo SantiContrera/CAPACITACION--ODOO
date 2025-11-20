@@ -18,6 +18,8 @@ class LibraryEjemplar(models.Model):
     description = fields.Text(string = 'Descripcion')
     user_id = fields.One2many('library.book.model', 'partner_id', string='Responsable')
     ejemplar_id = fields.Char(string='Nombre Ejemplar', compute='ejemplar_calc', store=True)
+    precio = fields.Monetary(string='Precio', currency_field='currency_id', related='titulo_id.price', readonly=True, store=True)
+    currency_id = fields.Many2one(related='titulo_id.currency_id', readonly=True, store=True)
 
     def actio(self):
         if self.status == 'stant':
@@ -45,3 +47,12 @@ class LibraryEjemplar(models.Model):
                 record.ejemplar_id = f"{record.titulo_id.tittle}, {count + 1}"
             else:
                 record.ejemplar_id = "Ejemplar sin título"
+
+    #def action_quotation_send(self):
+    def send_ejemplar_mail(self):
+        """Enviar correo usando la plantilla_ejemplar."""
+        template = self.env.ref('library_book.plantilla_ejemplar')
+        for ejemplar in self:
+            template.send_mail(ejemplar.id, force_send=True)
+
+   

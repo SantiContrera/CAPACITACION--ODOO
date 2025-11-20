@@ -59,6 +59,7 @@
                                     <field name="ejemplar_id"/>
                                     <!--field name="book_id"/-->
                                     <field name="status"/>
+                                    <field name="precio" readonly="1"/>
                                     <field name="propietario_id" attrs="{'invisible':[('status','in',['stant'])]}"/>
                                     <field name="fecha" attrs="{'invisible':[('status','!=','alquilado')]}"/>    
                                 </tree>

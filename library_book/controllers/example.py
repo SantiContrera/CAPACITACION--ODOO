@@ -6,27 +6,39 @@ class EjemplarControlador(http.Controller):
     def ObtenerEjemplares(self):
         """Dato de ejemplar:"""
         aux = request.env['library.ejemplar'].search([])
-        ejemplares = []
-        for ejemplares in aux:
-            data.append({
+        lenn = []
+        for ejemplar in aux:
+            lenn.append({
                 #ID del ejemplar.
-                'ID': ejemplares.id,
+                'ID': ejemplar.id,
                 #Código del ejemplar.
-                'Codigo': ejemplares.ejemplar_id,
+                'Codigo': ejemplar.ejemplar_id,
                 #Nombre del ejemplar.
-                'Nombre': ejemplares.titulo_id,
+                'Nombre': ejemplar.titulo_id,
                 #Fecha de devolución (si aplica).
-                'Fecha de devolucion': ejemplares.fecha,
+                'Fecha de devolucion': ejemplar.fecha,
             })
-        return aux
-    
-    @http.route('/library_book/informacion_ejemplar_panel', auth='user', type='json')
-    def Ejemplar(self):
+        return lenn
+
+    @http.route('/library_book/informacion_ejemplares/<int:ejemplar_id>', auth='user', type='json')
+    def Ejemplar(self, ejemplar_id):
         aux = request.env['library.ejemplar'].browse(ejemplar_id)
 
         #si no existe el buscadp
-        if aux.()
+        if not aux.exist():
             return {'error: ID no encontrado'}
-        #Nombre del ejemplar.
-        #Quien lo alquilo/compro.
-        #Valor del ejemplar
+        
+        #traer plantilla
+        template = request.env.ref('library_book_model.plantilla_ejemplar')
+
+        # Enviar email
+        template.send_ejemplar_mail(aux.id, force_send=True)
+
+        return {
+            #Nombre del ejemplar.
+            'ejemplar': aux.ejemplar_id,
+            #Quien lo alquilo/compro.
+            'Propietario':aux.propietario_id,
+            #Valor del ejemplar
+            'precio':aux.precio,
+        }
