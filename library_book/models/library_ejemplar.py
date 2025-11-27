@@ -49,7 +49,7 @@ class LibraryEjemplar(models.Model):
                 record.ejemplar_id = "Ejemplar sin título"
 
     #def action_quotation_send(self):
-    def send_ejemplar_mail(self):
+    def send_mail(self):
         """Enviar correo usando la plantilla_ejemplar."""
         template = self.env.ref('library_book.plantilla_ejemplar')
         for ejemplar in self:

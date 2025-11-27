@@ -1,7 +1,6 @@
 # - coding: utf-8 -*-
 
 {
-
     'name': 'Booker',
 
     'version': '1.0.0',
@@ -17,7 +16,6 @@
     'license': 'OPL-1',
 
     'depends': [
-
         "base",
         "mail",
     ],

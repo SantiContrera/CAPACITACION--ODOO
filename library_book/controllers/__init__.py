@@ -1,1 +1,1 @@
-from . import example
+from . import ejemplar_controlador
